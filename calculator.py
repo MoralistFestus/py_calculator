@@ -1,15 +1,19 @@
+#import Tkinter for Py3
 from tkinter import *
 
+#Create function to handle calculations
 def iCalc(source, side):
     storeObj = Frame(source, borderwidth=4, bd=4, bg="powder blue")
     storeObj.pack(side=side, expand =YES, fill =BOTH)
     return storeObj
 
+#Create function to handle button clicks
 def button(source, side, text, command=None):
     storeObj = Button(source, text=text, command=command)
     storeObj.pack(side=side, expand = YES, fill=BOTH)
     return storeObj
 
+#SET App title and stylings
 class app(Frame):
     def __init__(self):
         Frame.__init__(self)
@@ -23,6 +27,7 @@ class app(Frame):
           , bd=30, bg="powder blue").pack(side=TOP,
                                           expand=YES, fill=BOTH)
 
+        #Create function to handle clear clicks
         for clearButton in (["C"]):
             erase = iCalc(self, TOP)
             for ichar in clearButton:
@@ -35,7 +40,8 @@ class app(Frame):
             button(FunctionNum, LEFT, iEquals, lambda
                 storeObj=display, q=iEquals: storeObj
                    .set(storeObj.get() + q))
-
+            
+#Return answer if equal to button clicked
         EqualButton = iCalc(self, TOP)
         for iEquals in "=":
             if iEquals == '=':
@@ -49,6 +55,7 @@ class app(Frame):
                                     lambda storeObj=display, s=' %s ' % iEquals: storeObj.set
                                     (storeObj.get() + s))
 
+                #display answer on screen function
     def calc(self, display):
             try:
                 display.set(eval(display.get()))
@@ -58,3 +65,4 @@ class app(Frame):
 
 if __name__=='__main__':
  app().mainloop()
+#run program file
